@@ -40,3 +40,371 @@ FOREIGN KEY ("event_id")
   [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(260815387996677150)[0m
   [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (29.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCharacter Create (51.4ms)[0m  [1m[32mINSERT INTO "characters" ("name", "description", "physical", "social", "mental", "resources", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Jill"], ["description", "A young telemarketer just trying to make it."], ["physical", 2], ["social", 5], ["mental", 4], ["resources", 0], ["created_at", "2020-08-12 12:58:10.988587"], ["updated_at", "2020-08-12 12:58:10.988587"]]
+  [1m[35m (15.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCharacter Create (0.4ms)[0m  [1m[32mINSERT INTO "characters" ("name", "description", "physical", "social", "mental", "resources", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Jack"], ["description", "A young barista ona quest to make the best coffee."], ["physical", 3], ["social", 4], ["mental", 4], ["resources", 0], ["created_at", "2020-08-12 12:58:11.059865"], ["updated_at", "2020-08-12 12:58:11.059865"]]
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (28.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (200.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "adulting_app_api_development"[0m
+  [1m[35m (165.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "adulting_app_api_test"[0m
+  [1m[35m (767.5ms)[0m  [1m[35mCREATE DATABASE "adulting_app_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (700.6ms)[0m  [1m[35mCREATE DATABASE "adulting_app_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "characters" CASCADE[0m
+  [1m[35m (69.6ms)[0m  [1m[35mCREATE TABLE "characters" ("id" bigserial primary key, "name" character varying, "description" character varying, "physical" integer, "social" integer, "mental" integer, "resources" integer, "artwork" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "event_results" CASCADE[0m
+  [1m[35m (72.8ms)[0m  [1m[35mCREATE TABLE "event_results" ("id" bigserial primary key, "a_success" text, "a_success_score" integer, "a_success_art" character varying, "a_failure" text, "a_failure_score" integer, "a_failure_art" character varying, "b_success" text, "b_success_score" integer, "b_success_art" character varying, "b_failure" text, "b_failure_score" integer, "b_failure_art" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "event_id" bigint NOT NULL)[0m
+  [1m[35m (39.9ms)[0m  [1m[35mCREATE  INDEX  "index_event_results_on_event_id" ON "event_results"  ("event_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "events" CASCADE[0m
+  [1m[35m (64.2ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "description" text, "option_a" character varying, "option_b" character varying, "artwork" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (7.2ms)[0m  [1m[35mALTER TABLE "event_results" ADD CONSTRAINT "fk_rails_2f7a7a56b0"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (65.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (5.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200811155547)[0m
+  [1m[35m (7.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200811152820),
+(20200811153252),
+(20200811154501);
+
+[0m
+  [1m[35m (65.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-12 13:40:48.435983"], ["updated_at", "2020-08-12 13:40:48.435983"]]
+  [1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "be1b1982d91b7dfc5db6c1c065f829d72fda034a"], ["created_at", "2020-08-12 13:40:48.449924"], ["updated_at", "2020-08-12 13:40:48.449924"]]
+  [1m[35m (8.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "characters" CASCADE[0m
+  [1m[35m (87.6ms)[0m  [1m[35mCREATE TABLE "characters" ("id" bigserial primary key, "name" character varying, "description" character varying, "physical" integer, "social" integer, "mental" integer, "resources" integer, "artwork" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "event_results" CASCADE[0m
+  [1m[35m (72.4ms)[0m  [1m[35mCREATE TABLE "event_results" ("id" bigserial primary key, "a_success" text, "a_success_score" integer, "a_success_art" character varying, "a_failure" text, "a_failure_score" integer, "a_failure_art" character varying, "b_success" text, "b_success_score" integer, "b_success_art" character varying, "b_failure" text, "b_failure_score" integer, "b_failure_art" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "event_id" bigint NOT NULL)[0m
+  [1m[35m (38.3ms)[0m  [1m[35mCREATE  INDEX  "index_event_results_on_event_id" ON "event_results"  ("event_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "events" CASCADE[0m
+  [1m[35m (90.1ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "description" text, "option_a" character varying, "option_b" character varying, "artwork" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (7.2ms)[0m  [1m[35mALTER TABLE "event_results" ADD CONSTRAINT "fk_rails_2f7a7a56b0"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (65.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200811155547)[0m
+  [1m[35m (7.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200811152820),
+(20200811153252),
+(20200811154501);
+
+[0m
+  [1m[35m (65.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-12 13:40:48.933808"], ["updated_at", "2020-08-12 13:40:48.933808"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2020-08-12 13:40:48.941528"], ["key", "environment"]]
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "be1b1982d91b7dfc5db6c1c065f829d72fda034a"], ["created_at", "2020-08-12 13:40:48.949365"], ["updated_at", "2020-08-12 13:40:48.949365"]]
+  [1m[35m (3.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (395.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "adulting_app_api_development"[0m
+  [1m[35m (175.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "adulting_app_api_test"[0m
+  [1m[35m (506.3ms)[0m  [1m[35mCREATE DATABASE "adulting_app_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (508.4ms)[0m  [1m[35mCREATE DATABASE "adulting_app_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "characters" CASCADE[0m
+  [1m[35m (73.9ms)[0m  [1m[35mCREATE TABLE "characters" ("id" bigserial primary key, "name" character varying, "description" character varying, "physical" integer, "social" integer, "mental" integer, "resources" integer, "artwork" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "event_results" CASCADE[0m
+  [1m[35m (89.5ms)[0m  [1m[35mCREATE TABLE "event_results" ("id" bigserial primary key, "a_success" text, "a_success_score" integer, "a_success_art" character varying, "a_failure" text, "a_failure_score" integer, "a_failure_art" character varying, "b_success" text, "b_success_score" integer, "b_success_art" character varying, "b_failure" text, "b_failure_score" integer, "b_failure_art" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "event_id" bigint NOT NULL)[0m
+  [1m[35m (46.9ms)[0m  [1m[35mCREATE  INDEX  "index_event_results_on_event_id" ON "event_results"  ("event_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "events" CASCADE[0m
+  [1m[35m (64.5ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "description" text, "option_a" character varying, "option_b" character varying, "artwork" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (7.1ms)[0m  [1m[35mALTER TABLE "event_results" ADD CONSTRAINT "fk_rails_2f7a7a56b0"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (65.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (6.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200811155547)[0m
+  [1m[35m (7.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200811152820),
+(20200811153252),
+(20200811154501);
+
+[0m
+  [1m[35m (65.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-12 13:42:08.621194"], ["updated_at", "2020-08-12 13:42:08.621194"]]
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "be1b1982d91b7dfc5db6c1c065f829d72fda034a"], ["created_at", "2020-08-12 13:42:08.634851"], ["updated_at", "2020-08-12 13:42:08.634851"]]
+  [1m[35m (9.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "characters" CASCADE[0m
+  [1m[35m (87.4ms)[0m  [1m[35mCREATE TABLE "characters" ("id" bigserial primary key, "name" character varying, "description" character varying, "physical" integer, "social" integer, "mental" integer, "resources" integer, "artwork" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "event_results" CASCADE[0m
+  [1m[35m (80.6ms)[0m  [1m[35mCREATE TABLE "event_results" ("id" bigserial primary key, "a_success" text, "a_success_score" integer, "a_success_art" character varying, "a_failure" text, "a_failure_score" integer, "a_failure_art" character varying, "b_success" text, "b_success_score" integer, "b_success_art" character varying, "b_failure" text, "b_failure_score" integer, "b_failure_art" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "event_id" bigint NOT NULL)[0m
+  [1m[35m (47.0ms)[0m  [1m[35mCREATE  INDEX  "index_event_results_on_event_id" ON "event_results"  ("event_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "events" CASCADE[0m
+  [1m[35m (88.8ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "description" text, "option_a" character varying, "option_b" character varying, "artwork" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (6.6ms)[0m  [1m[35mALTER TABLE "event_results" ADD CONSTRAINT "fk_rails_2f7a7a56b0"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (81.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200811155547)[0m
+  [1m[35m (7.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200811152820),
+(20200811153252),
+(20200811154501);
+
+[0m
+  [1m[35m (57.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-12 13:42:09.144159"], ["updated_at", "2020-08-12 13:42:09.144159"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2020-08-12 13:42:09.151791"], ["key", "environment"]]
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "be1b1982d91b7dfc5db6c1c065f829d72fda034a"], ["created_at", "2020-08-12 13:42:09.159546"], ["updated_at", "2020-08-12 13:42:09.159546"]]
+  [1m[35m (3.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCharacter Create (0.5ms)[0m  [1m[32mINSERT INTO "characters" ("name", "description", "physical", "social", "mental", "resources", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Jill"], ["description", "A young telemarketer just trying to make it."], ["physical", 2], ["social", 5], ["mental", 4], ["resources", 0], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:42:09.198724"], ["updated_at", "2020-08-12 13:42:09.198724"]]
+  [1m[35m (13.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCharacter Create (0.3ms)[0m  [1m[32mINSERT INTO "characters" ("name", "description", "physical", "social", "mental", "resources", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Jack"], ["description", "A young barista ona quest to make the best coffee."], ["physical", 3], ["social", 4], ["mental", 4], ["resources", 0], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:42:09.216771"], ["updated_at", "2020-08-12 13:42:09.216771"]]
+  [1m[35m (4.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.4ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "flat tire"], ["option_a", "call AAA"], ["option_b", "change the tire"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:42:09.234465"], ["updated_at", "2020-08-12 13:42:09.234465"]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "burst pipe"], ["option_a", "use duck tape"], ["option_b", "call a plumber"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:42:09.249974"], ["updated_at", "2020-08-12 13:42:09.249974"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.2ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "Impromptu party"], ["option_a", "join the party"], ["option_b", "go to bed"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:42:09.258265"], ["updated_at", "2020-08-12 13:42:09.258265"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.2ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "Robbery"], ["option_a", "call the cops"], ["option_b", "scare the intruder off"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:42:09.266581"], ["updated_at", "2020-08-12 13:42:09.266581"]]
+  [1m[35m (4.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.2ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "Catch a cold"], ["option_a", "go to the hospital"], ["option_b", "take nyquil"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:42:09.274886"], ["updated_at", "2020-08-12 13:42:09.274886"]]
+  [1m[35m (5.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.2ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "Speeding ticket"], ["option_a", "try and lose the cops"], ["option_b", "try and talk your way out of a ticket"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:42:09.283493"], ["updated_at", "2020-08-12 13:42:09.283493"]]
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "No show at word"], ["option_a", "volunteer and help"], ["option_b", "hide in the closet and sneak off"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:42:09.291556"], ["updated_at", "2020-08-12 13:42:09.291556"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "Movie marathon"], ["option_a", "buy popcorn"], ["option_b", "buy beer"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:42:09.299989"], ["updated_at", "2020-08-12 13:42:09.299989"]]
+  [1m[35m (4.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.2ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "Date night"], ["option_a", "go out"], ["option_b", "stay in"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:42:09.308224"], ["updated_at", "2020-08-12 13:42:09.308224"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "empty fridge"], ["option_a", "get take out"], ["option_b", "go grocery shopping"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:42:09.316562"], ["updated_at", "2020-08-12 13:42:09.316562"]]
+  [1m[35m (4.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (309.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "adulting_app_api_development"[0m
+  [1m[35m (198.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "adulting_app_api_test"[0m
+  [1m[35m (833.2ms)[0m  [1m[35mCREATE DATABASE "adulting_app_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (524.9ms)[0m  [1m[35mCREATE DATABASE "adulting_app_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "characters" CASCADE[0m
+  [1m[35m (78.7ms)[0m  [1m[35mCREATE TABLE "characters" ("id" bigserial primary key, "name" character varying, "description" character varying, "physical" integer, "social" integer, "mental" integer, "resources" integer, "artwork" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "event_results" CASCADE[0m
+  [1m[35m (80.7ms)[0m  [1m[35mCREATE TABLE "event_results" ("id" bigserial primary key, "a_success" text, "a_success_score" integer, "a_success_art" character varying, "a_failure" text, "a_failure_score" integer, "a_failure_art" character varying, "b_success" text, "b_success_score" integer, "b_success_art" character varying, "b_failure" text, "b_failure_score" integer, "b_failure_art" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "event_id" bigint NOT NULL)[0m
+  [1m[35m (38.5ms)[0m  [1m[35mCREATE  INDEX  "index_event_results_on_event_id" ON "event_results"  ("event_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "events" CASCADE[0m
+  [1m[35m (72.4ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "description" text, "option_a" character varying, "option_b" character varying, "artwork" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (6.8ms)[0m  [1m[35mALTER TABLE "event_results" ADD CONSTRAINT "fk_rails_2f7a7a56b0"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (73.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (4.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200811155547)[0m
+  [1m[35m (7.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200811152820),
+(20200811153252),
+(20200811154501);
+
+[0m
+  [1m[35m (65.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-12 13:43:41.771834"], ["updated_at", "2020-08-12 13:43:41.771834"]]
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "be1b1982d91b7dfc5db6c1c065f829d72fda034a"], ["created_at", "2020-08-12 13:43:41.785646"], ["updated_at", "2020-08-12 13:43:41.785646"]]
+  [1m[35m (9.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "characters" CASCADE[0m
+  [1m[35m (88.7ms)[0m  [1m[35mCREATE TABLE "characters" ("id" bigserial primary key, "name" character varying, "description" character varying, "physical" integer, "social" integer, "mental" integer, "resources" integer, "artwork" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "event_results" CASCADE[0m
+  [1m[35m (64.7ms)[0m  [1m[35mCREATE TABLE "event_results" ("id" bigserial primary key, "a_success" text, "a_success_score" integer, "a_success_art" character varying, "a_failure" text, "a_failure_score" integer, "a_failure_art" character varying, "b_success" text, "b_success_score" integer, "b_success_art" character varying, "b_failure" text, "b_failure_score" integer, "b_failure_art" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "event_id" bigint NOT NULL)[0m
+  [1m[35m (30.5ms)[0m  [1m[35mCREATE  INDEX  "index_event_results_on_event_id" ON "event_results"  ("event_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "events" CASCADE[0m
+  [1m[35m (64.5ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "description" text, "option_a" character varying, "option_b" character varying, "artwork" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (7.2ms)[0m  [1m[35mALTER TABLE "event_results" ADD CONSTRAINT "fk_rails_2f7a7a56b0"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (90.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200811155547)[0m
+  [1m[35m (7.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200811152820),
+(20200811153252),
+(20200811154501);
+
+[0m
+  [1m[35m (82.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-12 13:43:42.270078"], ["updated_at", "2020-08-12 13:43:42.270078"]]
+  [1m[35m (9.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2020-08-12 13:43:42.285784"], ["key", "environment"]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "be1b1982d91b7dfc5db6c1c065f829d72fda034a"], ["created_at", "2020-08-12 13:43:42.293446"], ["updated_at", "2020-08-12 13:43:42.293446"]]
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCharacter Create (0.6ms)[0m  [1m[32mINSERT INTO "characters" ("name", "description", "physical", "social", "mental", "resources", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Jill"], ["description", "A young telemarketer just trying to make it."], ["physical", 2], ["social", 5], ["mental", 4], ["resources", 0], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:43:42.333312"], ["updated_at", "2020-08-12 13:43:42.333312"]]
+  [1m[35m (12.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCharacter Create (0.3ms)[0m  [1m[32mINSERT INTO "characters" ("name", "description", "physical", "social", "mental", "resources", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Jack"], ["description", "A young barista ona quest to make the best coffee."], ["physical", 3], ["social", 4], ["mental", 4], ["resources", 0], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:43:42.350699"], ["updated_at", "2020-08-12 13:43:42.350699"]]
+  [1m[35m (4.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.4ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "flat tire"], ["option_a", "call AAA"], ["option_b", "change the tire"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:43:42.367583"], ["updated_at", "2020-08-12 13:43:42.367583"]]
+  [1m[35m (9.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "burst pipe"], ["option_a", "use duck tape"], ["option_b", "call a plumber"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:43:42.383831"], ["updated_at", "2020-08-12 13:43:42.383831"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "Impromptu party"], ["option_a", "join the party"], ["option_b", "go to bed"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:43:42.392108"], ["updated_at", "2020-08-12 13:43:42.392108"]]
+  [1m[35m (4.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "Robbery"], ["option_a", "call the cops"], ["option_b", "scare the intruder off"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:43:42.400883"], ["updated_at", "2020-08-12 13:43:42.400883"]]
+  [1m[35m (3.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "Catch a cold"], ["option_a", "go to the hospital"], ["option_b", "take nyquil"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:43:42.408835"], ["updated_at", "2020-08-12 13:43:42.408835"]]
+  [1m[35m (4.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "Speeding ticket"], ["option_a", "try and lose the cops"], ["option_b", "try and talk your way out of a ticket"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:43:42.417123"], ["updated_at", "2020-08-12 13:43:42.417123"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "No show at word"], ["option_a", "volunteer and help"], ["option_b", "hide in the closet and sneak off"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:43:42.425470"], ["updated_at", "2020-08-12 13:43:42.425470"]]
+  [1m[35m (4.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "Movie marathon"], ["option_a", "buy popcorn"], ["option_b", "buy beer"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:43:42.433875"], ["updated_at", "2020-08-12 13:43:42.433875"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.3ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "Date night"], ["option_a", "go out"], ["option_b", "stay in"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:43:42.442221"], ["updated_at", "2020-08-12 13:43:42.442221"]]
+  [1m[35m (4.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEvent Create (0.2ms)[0m  [1m[32mINSERT INTO "events" ("description", "option_a", "option_b", "artwork", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["description", "empty fridge"], ["option_a", "get take out"], ["option_b", "go grocery shopping"], ["artwork", "placeholder"], ["created_at", "2020-08-12 13:43:42.450493"], ["updated_at", "2020-08-12 13:43:42.450493"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEventResult Create (0.7ms)[0m  [1m[32mINSERT INTO "event_results" ("a_success", "a_success_score", "a_success_art", "a_failure", "a_failure_score", "a_failure_art", "b_success", "b_success_score", "b_success_art", "b_failure", "b_failure_score", "b_failure_art", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["a_success", "Success!"], ["a_success_score", 10], ["a_success_art", "placeholder"], ["a_failure", "Failure..."], ["a_failure_score", 5], ["a_failure_art", "placeholder"], ["b_success", "Success!"], ["b_success_score", 10], ["b_success_art", "placeholder"], ["b_failure", "Failure..."], ["b_failure_score", 5], ["b_failure_art", "placeholder"], ["created_at", "2020-08-12 13:43:42.502416"], ["updated_at", "2020-08-12 13:43:42.502416"], ["event_id", 1]]
+  [1m[35m (10.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEventResult Create (0.3ms)[0m  [1m[32mINSERT INTO "event_results" ("a_success", "a_success_score", "a_success_art", "a_failure", "a_failure_score", "a_failure_art", "b_success", "b_success_score", "b_success_art", "b_failure", "b_failure_score", "b_failure_art", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["a_success", "Success!"], ["a_success_score", 10], ["a_success_art", "placeholder"], ["a_failure", "Failure..."], ["a_failure_score", 5], ["a_failure_art", "placeholder"], ["b_success", "Success!"], ["b_success_score", 10], ["b_success_art", "placeholder"], ["b_failure", "Failure..."], ["b_failure_score", 5], ["b_failure_art", "placeholder"], ["created_at", "2020-08-12 13:43:42.517160"], ["updated_at", "2020-08-12 13:43:42.517160"], ["event_id", 2]]
+  [1m[35m (12.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEventResult Create (0.3ms)[0m  [1m[32mINSERT INTO "event_results" ("a_success", "a_success_score", "a_success_art", "a_failure", "a_failure_score", "a_failure_art", "b_success", "b_success_score", "b_success_art", "b_failure", "b_failure_score", "b_failure_art", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["a_success", "Success!"], ["a_success_score", 10], ["a_success_art", "placeholder"], ["a_failure", "Failure..."], ["a_failure_score", 5], ["a_failure_art", "placeholder"], ["b_success", "Success!"], ["b_success_score", 10], ["b_success_art", "placeholder"], ["b_failure", "Failure..."], ["b_failure_score", 5], ["b_failure_art", "placeholder"], ["created_at", "2020-08-12 13:43:42.533920"], ["updated_at", "2020-08-12 13:43:42.533920"], ["event_id", 3]]
+  [1m[35m (4.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEventResult Create (0.3ms)[0m  [1m[32mINSERT INTO "event_results" ("a_success", "a_success_score", "a_success_art", "a_failure", "a_failure_score", "a_failure_art", "b_success", "b_success_score", "b_success_art", "b_failure", "b_failure_score", "b_failure_art", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["a_success", "Success!"], ["a_success_score", 10], ["a_success_art", "placeholder"], ["a_failure", "Failure..."], ["a_failure_score", 5], ["a_failure_art", "placeholder"], ["b_success", "Success!"], ["b_success_score", 10], ["b_success_art", "placeholder"], ["b_failure", "Failure..."], ["b_failure_score", 5], ["b_failure_art", "placeholder"], ["created_at", "2020-08-12 13:43:42.542202"], ["updated_at", "2020-08-12 13:43:42.542202"], ["event_id", 4]]
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEventResult Create (0.3ms)[0m  [1m[32mINSERT INTO "event_results" ("a_success", "a_success_score", "a_success_art", "a_failure", "a_failure_score", "a_failure_art", "b_success", "b_success_score", "b_success_art", "b_failure", "b_failure_score", "b_failure_art", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["a_success", "Success!"], ["a_success_score", 10], ["a_success_art", "placeholder"], ["a_failure", "Failure..."], ["a_failure_score", 5], ["a_failure_art", "placeholder"], ["b_success", "Success!"], ["b_success_score", 10], ["b_success_art", "placeholder"], ["b_failure", "Failure..."], ["b_failure_score", 5], ["b_failure_art", "placeholder"], ["created_at", "2020-08-12 13:43:42.550616"], ["updated_at", "2020-08-12 13:43:42.550616"], ["event_id", 5]]
+  [1m[35m (4.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEventResult Create (0.3ms)[0m  [1m[32mINSERT INTO "event_results" ("a_success", "a_success_score", "a_success_art", "a_failure", "a_failure_score", "a_failure_art", "b_success", "b_success_score", "b_success_art", "b_failure", "b_failure_score", "b_failure_art", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["a_success", "Success!"], ["a_success_score", 10], ["a_success_art", "placeholder"], ["a_failure", "Failure..."], ["a_failure_score", 5], ["a_failure_art", "placeholder"], ["b_success", "Success!"], ["b_success_score", 10], ["b_success_art", "placeholder"], ["b_failure", "Failure..."], ["b_failure_score", 5], ["b_failure_art", "placeholder"], ["created_at", "2020-08-12 13:43:42.558995"], ["updated_at", "2020-08-12 13:43:42.558995"], ["event_id", 6]]
+  [1m[35m (4.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEventResult Create (0.3ms)[0m  [1m[32mINSERT INTO "event_results" ("a_success", "a_success_score", "a_success_art", "a_failure", "a_failure_score", "a_failure_art", "b_success", "b_success_score", "b_success_art", "b_failure", "b_failure_score", "b_failure_art", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["a_success", "Success!"], ["a_success_score", 10], ["a_success_art", "placeholder"], ["a_failure", "Failure..."], ["a_failure_score", 5], ["a_failure_art", "placeholder"], ["b_success", "Success!"], ["b_success_score", 10], ["b_success_art", "placeholder"], ["b_failure", "Failure..."], ["b_failure_score", 5], ["b_failure_art", "placeholder"], ["created_at", "2020-08-12 13:43:42.567403"], ["updated_at", "2020-08-12 13:43:42.567403"], ["event_id", 7]]
+  [1m[35m (4.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEventResult Create (0.2ms)[0m  [1m[32mINSERT INTO "event_results" ("a_success", "a_success_score", "a_success_art", "a_failure", "a_failure_score", "a_failure_art", "b_success", "b_success_score", "b_success_art", "b_failure", "b_failure_score", "b_failure_art", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["a_success", "Success!"], ["a_success_score", 10], ["a_success_art", "placeholder"], ["a_failure", "Failure..."], ["a_failure_score", 5], ["a_failure_art", "placeholder"], ["b_success", "Success!"], ["b_success_score", 10], ["b_success_art", "placeholder"], ["b_failure", "Failure..."], ["b_failure_score", 5], ["b_failure_art", "placeholder"], ["created_at", "2020-08-12 13:43:42.575526"], ["updated_at", "2020-08-12 13:43:42.575526"], ["event_id", 8]]
+  [1m[35m (4.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEventResult Create (0.3ms)[0m  [1m[32mINSERT INTO "event_results" ("a_success", "a_success_score", "a_success_art", "a_failure", "a_failure_score", "a_failure_art", "b_success", "b_success_score", "b_success_art", "b_failure", "b_failure_score", "b_failure_art", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["a_success", "Success!"], ["a_success_score", 10], ["a_success_art", "placeholder"], ["a_failure", "Failure..."], ["a_failure_score", 5], ["a_failure_art", "placeholder"], ["b_success", "Success!"], ["b_success_score", 10], ["b_success_art", "placeholder"], ["b_failure", "Failure..."], ["b_failure_score", 5], ["b_failure_art", "placeholder"], ["created_at", "2020-08-12 13:43:42.584189"], ["updated_at", "2020-08-12 13:43:42.584189"], ["event_id", 9]]
+  [1m[35m (3.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEventResult Create (0.3ms)[0m  [1m[32mINSERT INTO "event_results" ("a_success", "a_success_score", "a_success_art", "a_failure", "a_failure_score", "a_failure_art", "b_success", "b_success_score", "b_success_art", "b_failure", "b_failure_score", "b_failure_art", "created_at", "updated_at", "event_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["a_success", "Success!"], ["a_success_score", 10], ["a_success_art", "placeholder"], ["a_failure", "Failure..."], ["a_failure_score", 5], ["a_failure_art", "placeholder"], ["b_success", "Success!"], ["b_success_score", 10], ["b_success_art", "placeholder"], ["b_failure", "Failure..."], ["b_failure_score", 5], ["b_failure_art", "placeholder"], ["created_at", "2020-08-12 13:43:42.595368"], ["updated_at", "2020-08-12 13:43:42.595368"], ["event_id", 10]]
+  [1m[35m (9.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCharacter Load (0.3ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  [1m[36mEventResult Load (0.7ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results"[0m
+Started GET "/events" for ::1 at 2020-08-12 09:45:12 -0400
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/events_controller.rb:8:in `index'
+Completed 200 OK in 15ms (Views: 9.4ms | ActiveRecord: 4.9ms | Allocations: 6749)
+
+
+Started GET "/event_results" for ::1 at 2020-08-12 09:45:39 -0400
+Processing by EventResultsController#index as HTML
+  [1m[36mEventResult Load (0.7ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results"[0m
+  ↳ app/controllers/event_results_controller.rb:8:in `index'
+Completed 200 OK in 36ms (Views: 32.1ms | ActiveRecord: 3.7ms | Allocations: 12136)
+
+
+Started GET "/events/event_results" for ::1 at 2020-08-12 09:46:18 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"event_results"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:44:in `set_event'
+Completed 404 Not Found in 8ms (ActiveRecord: 0.3ms | Allocations: 2061)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Event with 'id'=event_results):
+  
+app/controllers/events_controller.rb:44:in `set_event'
