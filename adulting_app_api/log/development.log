@@ -408,3 +408,105 @@ Completed 404 Not Found in 8ms (ActiveRecord: 0.3ms | Allocations: 2061)
 ActiveRecord::RecordNotFound (Couldn't find Event with 'id'=event_results):
   
 app/controllers/events_controller.rb:44:in `set_event'
+Started GET "/event" for ::1 at 2020-08-12 11:08:38 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/event"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/events" for ::1 at 2020-08-12 11:08:43 -0400
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/events_controller.rb:8:in `index'
+Completed 200 OK in 58ms (Views: 10.5ms | ActiveRecord: 3.6ms | Allocations: 7461)
+
+
+Started GET "/events" for ::1 at 2020-08-12 11:12:16 -0400
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/events_controller.rb:8:in `index'
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 2.8ms | Allocations: 7971)
+
+
+  
+NoMethodError (undefined method `event_results' for #<Event:0x000055cdda423eb8>
+Did you mean?  event_result
+               event_result=):
+  
+app/controllers/events_controller.rb:8:in `index'
+Started GET "/favicon.ico" for ::1 at 2020-08-12 11:12:17 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/events" for ::1 at 2020-08-12 11:12:51 -0400
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.4ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.3ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.1ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.1ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+Completed 200 OK in 81ms (Views: 0.1ms | ActiveRecord: 10.5ms | Allocations: 30087)
+
+

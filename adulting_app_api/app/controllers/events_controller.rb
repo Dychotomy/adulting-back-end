@@ -5,12 +5,12 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
 
-    render json: @events
+    render json: @events.to_json(include: :event_result)
   end
 
   # GET /events/1
   def show
-    render json: @event
+    render json: @event.to_json(include: :event_result)
   end
 
   # POST /events
