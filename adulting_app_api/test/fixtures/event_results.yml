@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  a_success: MyText
+  a_success_score: 1
+  a_success_art: MyString
+  a_failure: MyText
+  a_failure_score: 1
+  a_failure_art: MyString
+  b_success: MyText
+  b_success_score: 1
+  b_success_art: MyString
+  b_failure: MyText
+  b_failure_score: 1
+  b_failure_art: MyString
+
+two:
+  a_success: MyText
+  a_success_score: 1
+  a_success_art: MyString
+  a_failure: MyText
+  a_failure_score: 1
+  a_failure_art: MyString
+  b_success: MyText
+  b_success_score: 1
+  b_success_art: MyString
+  b_failure: MyText
+  b_failure_score: 1
+  b_failure_art: MyString

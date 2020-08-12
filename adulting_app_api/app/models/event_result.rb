@@ -1,0 +1,2 @@
+class EventResult < ApplicationRecord
+end
