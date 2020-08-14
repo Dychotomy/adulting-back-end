@@ -510,3 +510,62 @@ Processing by EventsController#index as HTML
 Completed 200 OK in 81ms (Views: 0.1ms | ActiveRecord: 10.5ms | Allocations: 30087)
 
 
+Started GET "/" for ::1 at 2020-08-14 09:27:27 -0400
+  [1m[35m (14.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/tyrone/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/tyrone/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 22.0ms | Allocations: 295)
+Completed 200 OK in 60ms (Views: 24.8ms | ActiveRecord: 0.0ms | Allocations: 1538)
+
+
+Started GET "/events" for ::1 at 2020-08-14 09:27:32 -0400
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (52.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (1.3ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.4ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.3ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.4ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.3ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.3ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.3ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+Completed 200 OK in 274ms (Views: 0.1ms | ActiveRecord: 116.1ms | Allocations: 29044)
+
+
+Started GET "/events/10" for ::1 at 2020-08-14 09:27:39 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:44:in `set_event'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:13:in `show'
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 1931)
+
+
+Started GET "/" for ::1 at 2020-08-14 13:34:19 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/tyrone/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/tyrone/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 6.4ms | Allocations: 184)
+Completed 200 OK in 8ms (Views: 7.3ms | ActiveRecord: 0.0ms | Allocations: 723)
+
+
+Started GET "/" for ::1 at 2020-08-14 13:34:24 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/tyrone/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/tyrone/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.3ms | Allocations: 8)
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 239)
+
+
