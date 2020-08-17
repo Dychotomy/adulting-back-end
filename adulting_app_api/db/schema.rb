@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_11_155547) do
+ActiveRecord::Schema.define(version: 2020_08_17_000934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(version: 2020_08_11_155547) do
     t.string "artwork"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "option_a_test"
+    t.string "option_b_test"
+    t.integer "difficulty"
   end
 
   add_foreign_key "event_results", "events"
