@@ -5,8 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Character.create({name: "Jill", description: "A young telemarketer just trying to make it.", physical: 2, social: 5, mental: 4, resources: 0, artwork: 'placeholder'})
-Character.create({name: "Jack", description: "A young barista ona quest to make the best coffee.", physical: 3, social: 4, mental: 4, resources: 0, artwork: 'placeholder'})
+Character.create({name: "Jill", description: "A young telemarketer just trying to make it.", physical: 2, social: 5, mental: 4, resources: 0, artwork: 'https://res.cloudinary.com/dpn6ltns1/image/upload/v1597062733/Project%204/jasmin-test_tqotyo.jpg'})
+Character.create({name: "Jack", description: "A young barista ona quest to make the best coffee.", physical: 3, social: 4, mental: 4, resources: 0, artwork: 'https://res.cloudinary.com/dpn6ltns1/image/upload/v1597062750/Project%204/raphael-test_or1e1g.jpg'})
 
 Event.create({description: 'flat tire', option_a: 'call AAA', option_a_test: 'social', option_b: 'change the tire', option_b_test: 'physical', difficulty: 5, artwork: 'placeholder'})
 Event.create({description: 'burst pipe', option_a: 'use duck tape', option_a_test: 'mental', option_b: 'call a plumber', option_b_test: 'social', difficulty: 3, artwork: 'placeholder'})
