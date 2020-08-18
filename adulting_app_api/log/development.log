@@ -7541,3 +7541,141 @@ Processing by EventsController#index as HTML
 Completed 200 OK in 29ms (Views: 0.1ms | ActiveRecord: 2.3ms | Allocations: 13170)
 
 
+Started GET "/characters" for ::1 at 2020-08-18 17:57:15 -0400
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CharactersController#index as HTML
+  [1m[36mCharacter Load (0.4ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/controllers/characters_controller.rb:8:in `index'
+Completed 200 OK in 26ms (Views: 20.8ms | ActiveRecord: 4.1ms | Allocations: 7409)
+
+
+Started GET "/events" for ::1 at 2020-08-18 17:57:15 -0400
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.5ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.4ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.4ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.3ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.1ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.1ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.1ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+Completed 200 OK in 69ms (Views: 0.1ms | ActiveRecord: 10.2ms | Allocations: 30447)
+
+
+Started GET "/characters" for ::1 at 2020-08-18 18:01:13 -0400
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CharactersController#index as HTML
+  [1m[36mCharacter Load (1.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/controllers/characters_controller.rb:8:in `index'
+Completed 200 OK in 34ms (Views: 25.9ms | ActiveRecord: 5.8ms | Allocations: 7424)
+
+
+Started GET "/events" for ::1 at 2020-08-18 18:01:13 -0400
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.4ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.4ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.3ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+Completed 200 OK in 61ms (Views: 0.1ms | ActiveRecord: 8.8ms | Allocations: 30453)
+
+
+Started GET "/characters" for ::1 at 2020-08-18 18:01:31 -0400
+Processing by CharactersController#index as HTML
+  [1m[36mCharacter Load (0.3ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/controllers/characters_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.3ms | Allocations: 1154)
+
+
+Started GET "/events" for ::1 at 2020-08-18 18:01:31 -0400
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.1ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.1ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.4ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+Completed 200 OK in 22ms (Views: 0.1ms | ActiveRecord: 2.3ms | Allocations: 13168)
+
+
+Started GET "/characters" for ::1 at 2020-08-18 18:01:54 -0400
+Processing by CharactersController#index as HTML
+  [1m[36mCharacter Load (0.3ms)[0m  [1m[34mSELECT "characters".* FROM "characters"[0m
+  ↳ app/controllers/characters_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.3ms | Allocations: 1154)
+
+
+Started GET "/events" for ::1 at 2020-08-18 18:01:54 -0400
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.2ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.3ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.3ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+  [1m[36mEventResult Load (0.3ms)[0m  [1m[34mSELECT "event_results".* FROM "event_results" WHERE "event_results"."event_id" = $1 LIMIT $2[0m  [["event_id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:8:in `index'
+Completed 200 OK in 34ms (Views: 0.1ms | ActiveRecord: 2.3ms | Allocations: 13169)
+
+
