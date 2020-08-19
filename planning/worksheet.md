@@ -4,6 +4,8 @@
 
 - [https://github.com/Dychotomy/adulting-front-end](Front-end)
 - [https://github.com/Dychotomy/adulting-back-end](Back-end)
+- [http://scientific-orange.surge.sh/](Live link) 
+- [https://adulting-api.herokuapp.com/](Database)
 
 ## Project Description
 
@@ -29,13 +31,13 @@ Due to the time contraints of the project I've elected to use unsplashed photos 
 
 | Character | Description | Physical | Social | Wits | Resources
 | --- | :---: | --- | --- | --- | --- |
-| Jill | the barista | 2 | 5 | 4 | $0 
-| Jack | the telemarketer | 3 | 4 | 4 | $0 
+| Jill | the barista | 2 | 5 | 4 | $0 |
+| Jack | the telemarketer | 3 | 4 | 4 | $0 |
 
 
-| Event | Description | Option A | Option B |
-| --- | --- | --- | --- |
-| Flat tire | event text | change flatt | call AAA |
+| Event | Description | Option A | Option B | option_a_test | option_b_test | difficulty | 
+| --- | --- | --- | --- | --- | --- | --- |
+| Flat tire | event text | change flat tire | call AAA | physical | social | 5 |
 
 | A-Good |A-G-Score| A-Bad |A-B-Score| B-Good |B-G-Score| B-Bad |B-B-Score| Event_id
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -47,7 +49,7 @@ Due to the time contraints of the project I've elected to use unsplashed photos 
 Upload images of wireframe to cloudinary and add the link here with a description of the specific wireframe. Also, define the the React components and the architectural design of your app.
 
 - [https://res.cloudinary.com/dpn6ltns1/image/upload/v1597059617/Project%204/Wireframes_nohwxy.png](Wireframes)
-- [https://res.cloudinary.com/dpn6ltns1/image/upload/v1597060275/Project%204/react_architecture_vqii0f.png](React Architecture)
+- [https://res.cloudinary.com/dpn6ltns1/image/upload/v1597838666/Project%204/react_architecture_2_ykvejr.png](React Architecture)
 
 
 ### MVP/PostMVP 
@@ -92,25 +94,51 @@ Time frames are also key in the development cycle.  You have limited time to cod
 
 | Component | Priority | Estimated Time | Time Invetsted | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| React Framework | H | 8hrs| -hrs | -hrs |
-| Ruby on Rails Database | H | 4hrs| -hrs | -hrs |
-| CSS & Styling | M | 16hrs | -hrs | -hrs |
-| Deployment | H | 4hrs | -hrs | -hrs |
-| Story Elements | M | 8hrs | -hrs | -hrs |
-| Electron.js | H | 8hrs | -hrs | -hrs |
-| Total | H | 48hrs| -hrs | -hrs |
+| React Framework | H | 8hrs| -hrs | 11hrs |
+| Ruby on Rails Database | H | 4hrs| -hrs | 2hrs |
+| CSS & Styling | M | 16hrs | -hrs | 10hrs |
+| Deployment | H | 4hrs | -hrs | 4hrs |
+| Story Elements | M | 8hrs | -hrs | 6hrs |
+| React Fullscreen * | M | 2hrs | -hrs | 3hrs |
+| Electron.js * | M | 6hrs | -hrs | 2hrs |
+| Total | H | 48hrs| -hrs | 38hrs |
+
+* The following components where not completed
 
 ## Additional Libraries
  Use this section to list all supporting libraries and thier role in the project such as Axios, ReactStrap, D3, etc. 
 
+ Axios
+ React Bootstrap
+ React router	
+ React fullscreen
  Electron.js
 
 ## Code Snippet
 
 Use this section to include a brief code snippet of functionality that you are proud of an a brief description.  Code snippet should not be greater than 10 lines of code. 
 
+The following code is the primary game logic of the game. Each event has couple of choices that have a difficulty score and an attribute associated to them. The following function grabs the event from a master list, extracts the difficulty and the attribute, then compares it to the corresponding attribute from the player. A randomizer is added to the player's attribute and if the result is equal to or higher than the difficulty, the player succeeds the event.  
+
 ```
-function reverse(string) {
-	// here is the code to reverse a string of text
-}
+    const eventHandler = (id, option) => {
+        let optionTest
+        const eventChallenge = events.filter(element => element.id === id ? element : null)[0]
+        const eventResults = eventChallenge.event_result
+        optionTest = eventChallenge[`option_${option}_test`]
+        let testResult = player[optionTest] + Math.floor(Math.random() * 3)
+        if (testResult >= eventChallenge.difficulty) {
+            setDailyEventResult({ text: eventResults[`${option}_success`], artwork: eventResults[`${option}_success_art`], isComplete: true })
+            setPlayer({
+                ...player,
+                resources: player.resources + eventResults[`${option}_success_score`]
+            })
+        } else {
+            setDailyEventResult({ text: eventResults[`${option}_failure`], artwork: eventResults[`${option}_failure_art`], isComplete: true })
+            setPlayer({
+                ...player,
+                resources: player.resources + eventResults[`${option}_failure_score`]
+            })
+        }
+    }
 ```
